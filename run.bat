@@ -45,8 +45,26 @@ if not exist .env (
 )
 
 echo.
-echo 🚀 启动 IDE...
+echo 请选择版本：
+echo   1) 基础版 (script_ide.py)
+echo   2) 增强版 (script_ide_enhanced.py) - 推荐
 echo.
+set /p choice="请输入选项 [1/2] (默认: 2): "
 
-REM 运行程序
-python script_ide.py %*
+if "%choice%"=="" set choice=2
+
+if "%choice%"=="1" (
+    echo.
+    echo 🚀 启动基础版...
+    echo.
+    python script_ide.py %*
+) else if "%choice%"=="2" (
+    echo.
+    echo 🚀 启动增强版...
+    echo.
+    python script_ide_enhanced.py %*
+) else (
+    echo ❌ 无效选项
+    pause
+    exit /b 1
+)

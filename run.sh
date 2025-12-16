@@ -40,8 +40,27 @@ if [ ! -f .env ]; then
 fi
 
 echo ""
-echo "🚀 启动 IDE..."
+echo "请选择版本："
+echo "  1) 基础版 (script_ide.py)"
+echo "  2) 增强版 (script_ide_enhanced.py) - 推荐"
 echo ""
+read -p "请输入选项 [1/2] (默认: 2): " choice
 
-# 运行程序
-python3 script_ide.py "$@"
+case $choice in
+    1)
+        echo ""
+        echo "🚀 启动基础版..."
+        echo ""
+        python3 script_ide.py "$@"
+        ;;
+    2|"")
+        echo ""
+        echo "🚀 启动增强版..."
+        echo ""
+        python3 script_ide_enhanced.py "$@"
+        ;;
+    *)
+        echo "❌ 无效选项"
+        exit 1
+        ;;
+esac
