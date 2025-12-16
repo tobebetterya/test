@@ -1,6 +1,11 @@
-# 基于LangChain的简易脚本IDE
+# 基于LangChain的智能脚本IDE
 
 一个类似Cursor IDE的智能脚本编辑器，可以通过自然语言对话来读取、修改和生成脚本文件。
+
+> 🎉 **v1.1.0 更新**：现已支持Python格式配置文件！可配置多个模型，支持各大API服务商！
+
+👉 **新用户？** 从 [START_HERE.md](START_HERE.md) 开始  
+⚙️ **配置API？** 查看 [CONFIG_GUIDE.md](CONFIG_GUIDE.md)
 
 ## 🎯 两个版本可选
 
@@ -37,18 +42,23 @@
 pip install -r requirements.txt
 ```
 
-### 2. 配置API密钥
+### 2. 配置API
 
-复制环境变量示例文件并配置你的OpenAI API密钥：
+复制配置文件示例并填入你的API配置：
 
 ```bash
-cp .env.example .env
+cp config.py.example config.py
 ```
 
-编辑 `.env` 文件，填入你的API密钥：
+编辑 `config.py` 文件，配置你的API：
 
-```
-OPENAI_API_KEY=sk-your-api-key-here
+```python
+# API配置
+API_BASE_URL = "https://your-api-endpoint.com/v1"
+API_KEY = "your-api-key-here"
+
+# 默认使用的模型
+DEFAULT_MODEL = "doubao-seed-1.6"  # 或其他可用模型
 ```
 
 ### 3. 运行程序
@@ -140,11 +150,12 @@ AI助手: [删除指定文件]
 ├── script_ide.py                # 基础版主程序
 ├── script_ide_enhanced.py       # 增强版主程序（推荐）
 ├── requirements.txt             # Python依赖
-├── .env.example                 # 环境变量示例
+├── config.py.example            # 配置文件示例
 ├── .gitignore                   # Git忽略文件
 ├── run.sh / run.bat            # 启动脚本
 ├── README.md                    # 本文件
 ├── QUICKSTART.md               # 快速入门
+├── CONFIG_GUIDE.md             # 配置指南（新增）
 ├── ANSWER_TO_YOUR_QUESTION.md  # 核心问题解答
 ├── COMPARISON.md               # 版本对比
 ├── ENHANCED_FEATURES.md        # 增强功能详解
@@ -155,7 +166,8 @@ AI助手: [删除指定文件]
     └── examples/               # 示例文件
 ```
 
-📋 完整文件说明请查看 [FILE_LIST.md](FILE_LIST.md)
+📋 完整文件说明请查看 [FILE_LIST.md](FILE_LIST.md)  
+⚙️ 详细配置说明请查看 [CONFIG_GUIDE.md](CONFIG_GUIDE.md)
 
 ## 🎯 支持的文件类型
 

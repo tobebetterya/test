@@ -1,0 +1,18 @@
+# API配置
+API_BASE_URL = "https://oneapi.qunhequnhe.com/v1"
+API_KEY = "sk-Mg0kSuvqf6aasasasaasa121212121212121212222asasax"
+
+# 可用的模型列表
+AVAILABLE_MODELS = {
+    "deepseek-r1-0528": "DeepSeek R1 模型",
+    "qwen-plus-latest": "通义千问 Plus 最新版",
+    "bge-m3-1024d": "BGE M3 嵌入模型",
+    "doubao-seed-1.6": "豆包 Seed 1.6 模型"
+}
+
+# 默认使用的模型
+DEFAULT_MODEL = "doubao-seed-1.6"
+
+# LLM配置
+TEMPERATURE = 0.7  # 生成温度，范围0-1，越高越随机
+MAX_TOKENS = 4000  # 最大生成token数

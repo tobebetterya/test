@@ -8,19 +8,31 @@
 pip install -r requirements.txt
 ```
 
-### 第二步：配置API密钥
+### 第二步：配置API
 
 1. 复制配置文件：
 ```bash
-cp .env.example .env
+cp config.py.example config.py
 ```
 
-2. 编辑 `.env` 文件，填入你的OpenAI API密钥：
-```
-OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxx
+2. 编辑 `config.py` 文件，填入你的API配置：
+```python
+# API配置
+API_BASE_URL = "https://your-api-endpoint.com/v1"
+API_KEY = "your-api-key-here"
+
+# 可用的模型列表
+AVAILABLE_MODELS = {
+    "deepseek-r1-0528": "DeepSeek R1 模型",
+    "qwen-plus-latest": "通义千问 Plus 最新版",
+    "doubao-seed-1.6": "豆包 Seed 1.6 模型"
+}
+
+# 默认使用的模型
+DEFAULT_MODEL = "doubao-seed-1.6"
 ```
 
-> 💡 如果你没有OpenAI API密钥，可以在 https://platform.openai.com/api-keys 获取
+> 💡 支持兼容OpenAI接口的任何API服务（如OneAPI、通义千问、豆包等）
 
 ### 第三步：运行程序
 
@@ -169,8 +181,8 @@ AI会记住对话历史，你可以这样：
 
 ## ⚠️ 常见问题
 
-### Q: 提示"未设置OPENAI_API_KEY"？
-A: 确保创建了 `.env` 文件并正确设置了API密钥。
+### Q: 提示"未找到配置文件 config.py"？
+A: 确保复制了 `config.py.example` 为 `config.py` 并正确配置了API。
 
 ### Q: API调用失败？
 A: 检查网络连接，确保可以访问OpenAI API。

@@ -13,9 +13,9 @@
 
 | 文件 | 大小 | 说明 |
 |------|------|------|
-| `requirements.txt` | 106B | Python依赖包列表 |
-| `.env.example` | 126B | API密钥配置模板 |
-| `.gitignore` | 509B | Git忽略规则 |
+| `requirements.txt` | ~100B | Python依赖包列表 |
+| `config.py.example` | ~600B | Python格式配置文件模板 |
+| `.gitignore` | ~500B | Git忽略规则 |
 
 ### 启动脚本 (2个)
 
@@ -24,17 +24,18 @@
 | `run.sh` | 1.6KB | Linux/Mac启动脚本（可选择版本） |
 | `run.bat` | 1.5KB | Windows启动脚本（可选择版本） |
 
-### 文档 (7个)
+### 文档 (8个)
 
 | 文件 | 大小 | 说明 | 推荐阅读 |
 |------|------|------|----------|
-| `README.md` | 5.1KB | 项目主文档 | ⭐⭐⭐ |
-| `QUICKSTART.md` | 3.9KB | 5分钟快速入门 | ⭐⭐⭐ |
-| `ANSWER_TO_YOUR_QUESTION.md` | 7.3KB | 回答"是否自动检索文件"问题 | ⭐⭐⭐⭐⭐ |
-| `COMPARISON.md` | 6.8KB | 基础版vs增强版详细对比 | ⭐⭐⭐⭐ |
-| `ENHANCED_FEATURES.md` | 8.0KB | 增强版功能详解 | ⭐⭐⭐⭐ |
-| `DEMO.md` | 6.9KB | 详细使用演示和场景 | ⭐⭐⭐ |
-| `PROJECT_OVERVIEW.md` | 6.4KB | 项目架构和技术概览 | ⭐⭐ |
+| `README.md` | ~5KB | 项目主文档 | ⭐⭐⭐ |
+| `QUICKSTART.md` | ~4KB | 5分钟快速入门 | ⭐⭐⭐ |
+| `CONFIG_GUIDE.md` | ~8KB | 配置文件详细指南（新增）| ⭐⭐⭐⭐⭐ |
+| `ANSWER_TO_YOUR_QUESTION.md` | ~7KB | 回答"是否自动检索文件"问题 | ⭐⭐⭐⭐⭐ |
+| `COMPARISON.md` | ~7KB | 基础版vs增强版详细对比 | ⭐⭐⭐⭐ |
+| `ENHANCED_FEATURES.md` | ~8KB | 增强版功能详解 | ⭐⭐⭐⭐ |
+| `DEMO.md` | ~7KB | 详细使用演示和场景 | ⭐⭐⭐ |
+| `PROJECT_OVERVIEW.md` | ~6KB | 项目架构和技术概览 | ⭐⭐ |
 
 ### 示例文件 (3个)
 
@@ -71,6 +72,9 @@
 
 ### 我想快速开始使用
 → 阅读 `QUICKSTART.md`
+
+### 我想配置API和模型
+→ 阅读 `CONFIG_GUIDE.md` ⭐⭐⭐⭐⭐
 
 ### 我想知道是否会自动检索文件
 → 阅读 `ANSWER_TO_YOUR_QUESTION.md` ⭐⭐⭐⭐⭐

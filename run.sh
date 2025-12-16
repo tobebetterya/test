@@ -28,13 +28,13 @@ if ! python3 -c "import langchain" 2>/dev/null; then
     echo "✅ 依赖安装完成"
 fi
 
-# 检查.env文件
-if [ ! -f .env ]; then
+# 检查config.py文件
+if [ ! -f config.py ]; then
     echo ""
-    echo "⚠️  警告: 未找到 .env 文件"
-    echo "请先配置 OpenAI API 密钥："
-    echo "  1. 复制: cp .env.example .env"
-    echo "  2. 编辑 .env 文件，填入你的 API 密钥"
+    echo "⚠️  警告: 未找到 config.py 文件"
+    echo "请先配置 API："
+    echo "  1. 复制: cp config.py.example config.py"
+    echo "  2. 编辑 config.py 文件，填入你的 API 配置"
     echo ""
     read -p "按回车键继续（或Ctrl+C退出）..."
 fi

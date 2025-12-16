@@ -33,13 +33,13 @@ if errorlevel 1 (
     echo ✅ 依赖安装完成
 )
 
-REM 检查.env文件
-if not exist .env (
+REM 检查config.py文件
+if not exist config.py (
     echo.
-    echo ⚠️  警告: 未找到 .env 文件
-    echo 请先配置 OpenAI API 密钥：
-    echo   1. 复制: copy .env.example .env
-    echo   2. 编辑 .env 文件，填入你的 API 密钥
+    echo ⚠️  警告: 未找到 config.py 文件
+    echo 请先配置 API：
+    echo   1. 复制: copy config.py.example config.py
+    echo   2. 编辑 config.py 文件，填入你的 API 配置
     echo.
     pause
 )

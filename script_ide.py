@@ -9,7 +9,6 @@ import os
 import sys
 from pathlib import Path
 from typing import List, Optional
-from dotenv import load_dotenv
 from colorama import Fore, Style, init
 
 from langchain_openai import ChatOpenAI
@@ -22,8 +21,23 @@ from langchain_core.messages import SystemMessage
 # 初始化colorama
 init(autoreset=True)
 
-# 加载环境变量
-load_dotenv()
+# 加载配置文件
+def load_config():
+    """加载配置文件"""
+    config_file = Path(__file__).parent / "config.py"
+    if not config_file.exists():
+        print(f"{Fore.RED}错误: 未找到配置文件 config.py{Style.RESET_ALL}")
+        print(f"{Fore.YELLOW}请复制 config.py.example 为 config.py 并填入你的配置{Style.RESET_ALL}")
+        sys.exit(1)
+    
+    # 导入配置
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("config", config_file)
+    config = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(config)
+    return config
+
+config = load_config()
 
 
 class ScriptIDE:
@@ -39,17 +53,26 @@ class ScriptIDE:
         self.workspace_dir.mkdir(exist_ok=True)
         
         # 初始化LLM
-        api_key = os.getenv("OPENAI_API_KEY")
-        if not api_key:
-            print(f"{Fore.RED}错误: 未设置OPENAI_API_KEY环境变量{Style.RESET_ALL}")
-            print(f"{Fore.YELLOW}请创建.env文件并设置: OPENAI_API_KEY=your_api_key{Style.RESET_ALL}")
-            sys.exit(1)
-            
+        if not hasattr(config, 'API_KEY') or not config.API_KEY or config.API_KEY.startswith("sk-"):
+            print(f"{Fore.YELLOW}提示: 请在 config.py 中配置你的 API_KEY{Style.RESET_ALL}")
+        
+        api_base = getattr(config, 'API_BASE_URL', None)
+        api_key = getattr(config, 'API_KEY', None)
+        model = getattr(config, 'DEFAULT_MODEL', 'gpt-4o-mini')
+        temperature = getattr(config, 'TEMPERATURE', 0.7)
+        max_tokens = getattr(config, 'MAX_TOKENS', 4000)
+        
         self.llm = ChatOpenAI(
-            model="gpt-4o-mini",
-            temperature=0.7,
-            api_key=api_key
+            model=model,
+            temperature=temperature,
+            max_tokens=max_tokens,
+            api_key=api_key,
+            base_url=api_base
         )
+        
+        print(f"{Fore.CYAN}使用模型: {model}{Style.RESET_ALL}")
+        if hasattr(config, 'AVAILABLE_MODELS') and model in config.AVAILABLE_MODELS:
+            print(f"{Fore.CYAN}模型说明: {config.AVAILABLE_MODELS[model]}{Style.RESET_ALL}")
         
         # 创建工具
         self.tools = self._create_tools()
