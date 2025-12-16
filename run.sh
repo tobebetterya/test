@@ -1,0 +1,66 @@
+#!/bin/bash
+# 启动脚本
+
+echo "================================"
+echo "  LangChain 脚本IDE 启动器"
+echo "================================"
+echo ""
+
+# 检查Python是否安装
+if ! command -v python3 &> /dev/null; then
+    echo "❌ 错误: 未找到 Python3"
+    echo "请先安装 Python 3.7 或更高版本"
+    exit 1
+fi
+
+echo "✅ Python 版本: $(python3 --version)"
+
+# 检查依赖是否安装
+if ! python3 -c "import langchain" 2>/dev/null; then
+    echo ""
+    echo "⚠️  警告: 依赖未安装"
+    echo "正在安装依赖..."
+    pip install -r requirements.txt
+    if [ $? -ne 0 ]; then
+        echo "❌ 依赖安装失败"
+        exit 1
+    fi
+    echo "✅ 依赖安装完成"
+fi
+
+# 检查config.py文件
+if [ ! -f config.py ]; then
+    echo ""
+    echo "⚠️  警告: 未找到 config.py 文件"
+    echo "请先配置 API："
+    echo "  1. 复制: cp config.py.example config.py"
+    echo "  2. 编辑 config.py 文件，填入你的 API 配置"
+    echo ""
+    read -p "按回车键继续（或Ctrl+C退出）..."
+fi
+
+echo ""
+echo "请选择版本："
+echo "  1) 基础版 (script_ide.py)"
+echo "  2) 增强版 (script_ide_enhanced.py) - 推荐"
+echo ""
+read -p "请输入选项 [1/2] (默认: 2): " choice
+
+case $choice in
+    1)
+        echo ""
+        echo "🚀 启动基础版..."
+        echo ""
+        python3 script_ide.py "$@"
+        ;;
+    2|"")
+        echo ""
+        echo "🚀 启动增强版..."
+        echo ""
+        python3 script_ide_enhanced.py "$@"
+        ;;
+    *)
+        echo "❌ 无效选项"
+        exit 1
+        ;;
+esac
